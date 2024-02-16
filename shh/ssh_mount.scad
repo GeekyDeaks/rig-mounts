@@ -10,6 +10,7 @@ $fn=50;
 //DM = 110; // mount hole spacing
 
 DEPTH = 5; // depth of the model
+BRACE_WIDTH = DEPTH * 2;
 MOUNT_HOLE_Z = 20; // mount hole Z spacing
 SHH_HOLE_Y = 25; // SHH hole Y spacing
 SHH_HOLE_X = 70; // SSH hole X spacing
@@ -75,14 +76,14 @@ module side() {
 module brace() {
   translate([DEPTH, 0])
   rotate([0, 270, 0])
-  linear_extrude(DEPTH)
+  linear_extrude(BRACE_WIDTH)
   polygon([ [DEPTH, DEPTH], [DEPTH, MODEL_Y], [MODEL_Z, DEPTH] ]);
   
 }
 
 top();
 side();
-translate([20, 0, 0]) brace();
-translate([MODEL_X - 20 - DEPTH, 0, 0])brace();
+translate([20 + BRACE_WIDTH / 2, 0, 0]) brace();
+translate([MODEL_X - 20 - (BRACE_WIDTH / 2), 0, 0])brace();
 
 
